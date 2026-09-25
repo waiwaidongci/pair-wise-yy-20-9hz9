@@ -144,20 +144,42 @@ select {
 
 .cell,
 .label-cell,
-.beat-cell {
+.beat-cell,
+.measure-cell {
   min-height: 48px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
 }
 
 .label-cell,
-.beat-cell {
+.beat-cell,
+.measure-cell {
   display: grid;
   place-items: center;
   background: #f4ead9;
   color: var(--muted);
   font-weight: 800;
   font-size: 13px;
+}
+
+.group-corner {
+  grid-row: span 2;
+}
+
+.measure-cell {
+  min-height: 40px;
+  background: #efe3cd;
+  letter-spacing: 1px;
+}
+
+.measure-cell.is-repeat {
+  background: #fae8ca;
+  color: var(--gold);
+}
+
+.measure-cell.active {
+  background: var(--active);
+  color: white;
 }
 
 .cell {
@@ -217,6 +239,146 @@ select {
   font-size: 14px;
 }
 
+.structure-total {
+  font-weight: 800;
+  color: var(--ink);
+}
+
+/* 排练走台序列 */
+.sequence-panel {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--panel);
+  padding: 12px 16px;
+  margin-bottom: 14px;
+}
+
+.sequence-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.sequence-head h2 {
+  margin-bottom: 0;
+}
+
+.sequence-hint {
+  margin: 6px 0 12px;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.sequence-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+.seq-card {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  padding: 10px;
+  cursor: grab;
+}
+
+.seq-card.repeated {
+  border-color: var(--gold);
+  background: #fff7e3;
+}
+
+.seq-card.dragging {
+  opacity: 0.45;
+}
+
+.seq-card.drop-before {
+  box-shadow: inset 4px 0 0 var(--active);
+}
+
+.seq-handle {
+  color: var(--muted);
+  font-size: 18px;
+  cursor: grab;
+}
+
+.seq-card-body {
+  display: grid;
+  gap: 4px;
+  flex: 1;
+}
+
+.seq-card-body strong {
+  font-size: 14px;
+}
+
+.seq-card-body span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.seq-repeat {
+  min-height: 32px;
+  min-width: 40px;
+  border-radius: 999px;
+  padding: 0 10px;
+  background: var(--line);
+  color: var(--ink);
+  font-weight: 800;
+}
+
+.seq-card.repeated .seq-repeat {
+  background: var(--gold);
+  color: white;
+}
+
+.sequence-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.seq-totals {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+.seq-status {
+  font-size: 12px;
+  font-weight: 800;
+  border-radius: 999px;
+  padding: 4px 10px;
+}
+
+.seq-status.is-draft {
+  background: #f1e3c4;
+  color: #7a5a12;
+}
+
+.seq-status.is-stale {
+  background: #f6d7d9;
+  color: var(--accent);
+}
+
+.seq-status.is-confirmed {
+  background: #d9efea;
+  color: var(--active);
+}
+
+.btn-secondary {
+  background: var(--ink);
+}
+
+.btn-secondary:disabled,
+.transport button:disabled {
+  background: #b9b2a8;
+  cursor: not-allowed;
+}
+
 @media (max-width: 1160px) {
   .stage,
   .controls {
@@ -229,5 +391,9 @@ select {
   .transport {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .sequence-list {
+    grid-template-columns: 1fr;
   }
 }
