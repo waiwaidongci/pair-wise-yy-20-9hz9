@@ -16,21 +16,18 @@
       <div class="transport">
         <button id="playBtn" type="button">播放</button>
         <button id="stopBtn" type="button">停止</button>
-        <button id="saveBtn" type="button">保存方案</button>
+        <div class="save-box">
+          <button id="saveBtn" type="button">保存方案</button>
+          <p id="saveHint" class="save-hint"></p>
+        </div>
       </div>
     </header>
 
     <section class="controls">
       <label>剧目片段<input id="pieceName" placeholder="如：出场锣鼓-慢起"></label>
       <label>速度BPM<input id="bpmInput" type="number" min="40" max="220" value="96"></label>
-      <label>循环小节
-        <select id="loopSelect">
-          <option value="">全段</option>
-          <option value="0">第1小节</option>
-          <option value="1">第2小节</option>
-          <option value="2">第3小节</option>
-          <option value="3">第4小节</option>
-        </select>
+      <label>循环起点
+        <select id="loopSelect"></select>
       </label>
       <label>难点批注<input id="noteInput" placeholder="如：第2小节小锣晚半拍"></label>
     </section>
@@ -41,6 +38,14 @@
         <div id="savedList"></div>
       </aside>
       <section class="score">
+        <div class="seq-panel">
+          <div class="seq-head">
+            <h2>走台序列（工作稿）</h2>
+            <button id="confirmSeq" class="confirm-btn" type="button">确认序列</button>
+          </div>
+          <p id="seqStatus" class="seq-status"></p>
+          <div id="seqList" class="seq-list"></div>
+        </div>
         <div id="grid" class="grid"></div>
       </section>
       <aside class="notes">
@@ -51,6 +56,8 @@
       </aside>
     </section>
   </main>
+  <script src="./calc.js"></script>
+  <script src="./store.js"></script>
   <script src="./app.js"></script>
 </body>
 </html>

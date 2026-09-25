@@ -136,18 +136,28 @@ select {
 
 .grid {
   display: grid;
-  grid-template-columns: 76px repeat(16, minmax(48px, 1fr));
-  min-width: 850px;
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
 
 .cell,
 .label-cell,
-.beat-cell {
+.beat-cell,
+.beat-group {
   min-height: 48px;
   border-right: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
+}
+
+.beat-group {
+  grid-column: span 4;
+  display: grid;
+  place-items: center;
+  background: #e9dcc6;
+  color: #7a5a2e;
+  font-weight: 800;
+  font-size: 12px;
+  min-height: 34px;
 }
 
 .label-cell,
@@ -217,10 +227,151 @@ select {
   font-size: 14px;
 }
 
+.structure-total {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0 0;
+  color: var(--ink);
+  font-size: 14px;
+}
+
+/* 走台序列工作稿 */
+.seq-panel {
+  border: 1px dashed var(--line);
+  border-radius: 8px;
+  background: #fbf4e8;
+  padding: 12px;
+  margin-bottom: 12px;
+}
+
+.seq-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.seq-head h2 {
+  margin: 0;
+}
+
+.confirm-btn {
+  min-height: 34px;
+  background: var(--active);
+  padding: 0 12px;
+}
+
+.confirm-btn:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.seq-status {
+  margin: 8px 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.seq-status.status-unconfirmed { color: var(--gold); }
+.seq-status.status-stale { color: var(--accent); }
+.seq-status.status-confirmed { color: var(--active); }
+
+.seq-list {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.seq-card {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: white;
+  padding: 8px 10px;
+  cursor: grab;
+  user-select: none;
+}
+
+.seq-card.dragging {
+  opacity: 0.45;
+}
+
+.seq-card.playing {
+  outline: 2px solid var(--active);
+  outline-offset: -2px;
+}
+
+.seq-card.is-start {
+  border-color: var(--active);
+  background: #eef7f5;
+}
+
+.seq-grip {
+  color: var(--muted);
+  font-size: 16px;
+  cursor: grab;
+}
+
+.seq-pos {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.seq-card strong {
+  font-size: 15px;
+}
+
+.seq-count {
+  flex-basis: 100%;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.seq-flag {
+  flex-basis: 100%;
+  color: var(--active);
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.repeat-btn {
+  margin-left: auto;
+  min-height: 28px;
+  min-width: 44px;
+  border-radius: 999px;
+  background: #ead9c2;
+  color: #7a5a2e;
+  padding: 0 10px;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.repeat-btn.doubled {
+  background: var(--accent);
+  color: white;
+}
+
+.save-hint {
+  margin: 6px 0 0;
+  color: var(--accent);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: right;
+  min-height: 14px;
+}
+
 @media (max-width: 1160px) {
   .stage,
   .controls {
     grid-template-columns: 1fr;
+  }
+
+  .seq-list {
+    grid-template-columns: repeat(2, 1fr);
   }
 }
 
@@ -229,5 +380,9 @@ select {
   .transport {
     align-items: stretch;
     flex-direction: column;
+  }
+
+  .seq-list {
+    grid-template-columns: 1fr;
   }
 }
